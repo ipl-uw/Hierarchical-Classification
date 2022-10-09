@@ -1,7 +1,6 @@
 from tqdm import tqdm
 import argparse
 import os
-from IPython import embed
 from natsort import natsorted
 
 if __name__ == '__main__':
