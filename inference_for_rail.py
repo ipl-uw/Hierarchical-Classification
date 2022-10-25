@@ -40,14 +40,15 @@ if __name__ == '__main__':
                              num_workers=0)
     # Load Model
     GRAYSCALE = False
-    NUM_CLASSES = calculate_num_class(hierarchy_dict)
+    # NUM_CLASSES = calculate_num_class(hierarchy_dict)
+    NUM_level_1_CLASSES, NUM_level_2_CLASSES = calculate_num_class(hierarchy_dict)
     # model_save_path = './checkpoints-model7-track_based more'
     # best_epoch=135   #model-7  more
 
     model_save_path = 'checkpoints_plus_sleeper_shark_nonfish'
     best_epoch = 65
     device = 'cuda:0'
-    model = resnet101(NUM_CLASSES, GRAYSCALE)
+    model = resnet101(NUM_level_1_CLASSES,  NUM_level_2_CLASSES, GRAYSCALE)
     PATH = os.path.join(model_save_path,'parameters_epoch_'+str(best_epoch)+'.pkl')
     model.load_state_dict(torch.load(PATH))
     model.to(device)
