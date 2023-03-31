@@ -1,4 +1,16 @@
 import pandas as pd
+import argparse
+
+parser = argparse.ArgumentParser(description="hierarchical classification post process")
+
+parser.add_argument('-csv_input', '--csv_input', type=str,
+                    default='Z:\Jie Mei/rail data\hierarchy_data_for_Transformer-SVM/test_sleeper_shark\AK-50308-220423_214636-C1H-025-220524_210051_809_1-20230105T014047Z-001\AK-50308-220423_214636-C1H-025-220524_210051_809_1',
+                    help="folder to frames folder")
+parser.add_argument('-csv_output', '--csv_output', type=str,
+                    default='Z:\Jie Mei/rail data\hierarchy_data_for_Transformer-SVM/test_sleeper_shark/AK-50308-220423_214636-C1H-025-220524_210051_809_1-20230105T014047Z-001-result\AK-50308-220423_214636-C1H-025-220524_210051_809_1/tracking_result_with_huber.csv',
+                    help="folder to tracking_result_with_huber_processed.csv")
+
+args = parser.parse_args()
 
 # Change the path to the absolute path of the csv file on your PC.
 
@@ -14,7 +26,7 @@ import pandas as pd
 
 # csv_input = pd.read_csv("Z:\Jie Mei/rail data\hierarchy_data_for_Transformer-SVM/test_sleeper_shark\Vessel 6-210804_212407-C1H-001-210816_211530_546-result/flat_classification_result_aug.csv")
 # csv_input = pd.read_csv("Z:\Jie Mei/rail data\hierarchy_data_for_Transformer-SVM/test_sleeper_shark\AK-50308-220423_214636-C1H-025-220524_210051_809_1-20230105T014047Z-001-result\AK-50308-220423_214636-C1H-025-220524_210051_809_1/flat_classification_result_aug.csv")
-csv_input = pd.read_csv("Z:\Jie Mei/rail data\hierarchy_data_for_Transformer-SVM/test_sleeper_shark\AK-50308-220423_214636-C1H-025-220524_210051_809_1-20230105T014047Z-001-result\AK-50308-220423_214636-C1H-025-220524_210051_809_1/flat_classification_result_lmmd.csv")
+csv_input = pd.read_csv(args.csv_input)
 csv_input['length'] = 0
 csv_input['location'] = 0
 csv_input['depredation'] = 0
@@ -42,4 +54,4 @@ csv_input.head()
 
 # csv_input.to_csv("Z:\Jie Mei/rail data\hierarchy_data_for_Transformer-SVM/test_sleeper_shark\Vessel 6-210804_212407-C1H-001-210816_211530_546-result/flat_classification_result_aug-processed.csv", index=False)
 # csv_input.to_csv("Z:\Jie Mei/rail data\hierarchy_data_for_Transformer-SVM/test_sleeper_shark\AK-50308-220423_214636-C1H-025-220524_210051_809_1-20230105T014047Z-001-result\AK-50308-220423_214636-C1H-025-220524_210051_809_1/flat_classification_result_aug-procesed.csv", index=False)
-csv_input.to_csv("Z:\Jie Mei/rail data\hierarchy_data_for_Transformer-SVM/test_sleeper_shark\AK-50308-220423_214636-C1H-025-220524_210051_809_1-20230105T014047Z-001-result\AK-50308-220423_214636-C1H-025-220524_210051_809_1/flat_classification_result_lmmd-procesed.csv", index=False)
+csv_input.to_csv(args.csv_output, index=False)
